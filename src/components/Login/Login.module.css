@@ -1,0 +1,33 @@
+button {
+  background-color: cadetblue;
+  border: none;
+  margin-bottom: 10px;
+  height: 30px;
+  border-radius: 4px;
+  color: aliceblue;
+}
+.signup {
+  text-align: center;
+  font-size: 24px;
+  margin: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 8px;
+  /* background-color: grey; */
+}
+
+.form input {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.form label {
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
