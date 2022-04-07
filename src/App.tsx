@@ -1,12 +1,15 @@
 import React from 'react';
-import Signup from './components/Signup/Signup';
 import styles from './App.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function App() {
   return (
     <div className={styles.container}>
-      <Link to='/login'>로그인</Link>
-      <Link to='/signup'>회원가입</Link>
+      <Link to='/login' style={{ margin: 10 }}>
+        로그인
+      </Link>
+      <Link to='/signup' style={{ margin: 10 }}>
+        회원가입
+      </Link>
     </div>
   );
 }

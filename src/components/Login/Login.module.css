@@ -6,6 +6,16 @@ button {
   border-radius: 4px;
   color: aliceblue;
 }
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
 .signup {
   text-align: center;
   font-size: 24px;
