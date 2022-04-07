@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
 const SuccessLogin = () => {
-  const user = useSelector((state: RootState) => state.userReducer);
+  const user = useSelector((state: RootState) => state.user);
 
   return (
     <div>

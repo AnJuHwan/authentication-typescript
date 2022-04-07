@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from '../../service/Sign';
+import { ISignUp } from '../../interface/Sign';
+import { signUp, updateUser } from '../../service/Sign';
 import { RootState } from '../../store/store';
-import { signUpSuccess } from '../../store/user/action';
-import userReducer from '../../store/user/reducer';
+import { login } from '../../store/user/userSlice';
 import styles from './Signup.module.css';
 
 const Signup: React.FC = (props) => {
@@ -12,7 +12,7 @@ const Signup: React.FC = (props) => {
   const [password, setPassword] = useState<string>('');
   const [passwordConfirm, setPasswordConfirm] = useState<string>('');
   const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.userReducer);
+  const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -36,9 +36,18 @@ const Signup: React.FC = (props) => {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.');
     }
 
-    const getSignupData = await signUp(email, password, true);
-    dispatch(signUpSuccess(getSignupData));
-    navigate('/successLogin');
+    try {
+      const getSignupData: ISignUp = await signUp(email, password, true);
+      const updateUserData = await updateUser(getSignupData.idToken, '테스트', '');
+      console.log(updateUserData);
+      dispatch(login(updateUserData));
+      if (getSignupData) {
+        localStorage.setItem('token', getSignupData.idToken);
+        navigate('/successLogin');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const enteredEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

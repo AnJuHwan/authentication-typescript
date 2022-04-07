@@ -6,7 +6,7 @@ import styles from './Login.module.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const user = useSelector((state: RootState) => state.userReducer);
+  const user = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
     console.log(user);
