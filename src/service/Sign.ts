@@ -34,5 +34,25 @@ export const updateUser = async (idToken: string, displayName: string, photoUrl:
     );
     const data = await response.data;
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const userLogin = async (email: string, password: string) => {
+  let body = {
+    email,
+    password,
+    returnSecureToken: false,
+  };
+  try {
+    const resposne = await axios.post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+      body,
+    );
+    const data = await resposne.data;
+    return data;
+  } catch (error) {
+    alert('아이디 , 비밀번호를 확인해주세요.');
+  }
 };

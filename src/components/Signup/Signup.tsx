@@ -38,8 +38,10 @@ const Signup: React.FC = (props) => {
 
     try {
       const getSignupData: ISignUp = await signUp(email, password, true);
-      const updateUserData = await updateUser(getSignupData.idToken, '테스트', '');
+
+      const updateUserData = await updateUser(getSignupData.idToken, '테스트12', '');
       console.log(updateUserData);
+
       dispatch(login(updateUserData));
       if (getSignupData) {
         localStorage.setItem('token', getSignupData.idToken);

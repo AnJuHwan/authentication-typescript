@@ -21,20 +21,21 @@ function App() {
     let body = {
       idToken: localToken,
     };
-    const response = await axios.post(
-      `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
-      body,
-    );
-    const data = await response.data;
-
-    if (data) {
-      console.log('12');
-      dispatch(login(data.users[0]));
-    } else {
-      console.log('123');
-      dispatch(logout());
+    if (localToken) {
+      const response = await axios.post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+        body,
+      );
+      const data = await response.data;
+      if (data) {
+        console.log('12');
+        dispatch(login(data.users[0]));
+      } else {
+        console.log('123');
+        dispatch(logout());
+      }
+      return data;
     }
-    return data;
   };
 
   return (
