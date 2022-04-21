@@ -47,6 +47,7 @@ const Login = () => {
         <input type='password' onChange={enteredPasswordHandler} />
         <button onClick={userLoginHandler}>로그인하기</button>
         <button onClick={() => navigate('/signup')}>회원가입 하러 가기</button>
+        <button onClick={() => navigate('/passwordReset')}>비밀번호 재설정하기</button>
       </form>
     </div>
   );

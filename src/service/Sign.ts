@@ -56,3 +56,54 @@ export const userLogin = async (email: string, password: string) => {
     alert('아이디 , 비밀번호를 확인해주세요.');
   }
 };
+
+export const removeUser = async (token: string) => {
+  let body = {
+    idToken: token,
+  };
+  try {
+    const response = await axios.post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:delete?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+      body,
+    );
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    alert('서버 에러입니다.');
+  }
+};
+
+export const userPasswordReset = async (email: string) => {
+  let body = {
+    requestType: 'PASSWORD_RESET',
+    email,
+  };
+  try {
+    const response = await axios.post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+      body,
+    );
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    alert('서버 에러입니다.');
+  }
+};
+
+export const userPasswordChange = async (token: string, password: string) => {
+  let body = {
+    idToken: token,
+    password,
+    returnSecureToken: false,
+  };
+  try {
+    const response = await axios.post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:update?key=${process.env.REACT_APP_FIREBASE_API_KEY}`,
+      body,
+    );
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    alert('서버 에러입니다.');
+  }
+};

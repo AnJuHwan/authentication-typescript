@@ -8,6 +8,8 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from './store/user/userSlice';
 import { RootState } from './store/store';
+import PasswordReset from './components/PasswordReset/PasswordReset';
+import PasswordChange from './components/PasswordChange/PasswordChange';
 function App() {
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
@@ -28,10 +30,8 @@ function App() {
       );
       const data = await response.data;
       if (data) {
-        console.log('12');
         dispatch(login(data.users[0]));
       } else {
-        console.log('123');
         dispatch(logout());
       }
       return data;
@@ -44,6 +44,8 @@ function App() {
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/successLogin' element={<SuccessLogin />} />
+      <Route path='/passwordReset' element={<PasswordReset />} />
+      <Route path='/passwordChange' element={<PasswordChange />} />
     </Routes>
   );
 }
