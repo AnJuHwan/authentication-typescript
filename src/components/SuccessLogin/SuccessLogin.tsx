@@ -28,9 +28,9 @@ const SuccessLogin = () => {
 
   const removeUserHandler = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    localStorage.removeItem('token');
     const result = await removeUser(isUser!);
     if (result) {
+      localStorage.removeItem('token');
       navigate('/');
       dispatch(logout());
       alert('회원탈퇴 되었습니다.');
